@@ -10,16 +10,16 @@ char letters[27]="abcdefghijklmnopqrstuvwxyz ", fname[100];;
 
 void main() {
     char data[MAX];
-    int option; 
+    int option, ch; 
     puts("e - encrypt");
     puts("d - derypt");
     puts("x - to exit cipher");
-    printf("Your option: ");
     while (option != 'x')
     {
-        option = getchar();
-        switch (option)
-        {
+        printf("Your option: ");
+        while((option = getchar()) == '\n'); // reduce '\n' character from nowhere (happen when finish encrypt and come back to this option)?
+        while((ch = getchar()) != '\n'); // reduce noise
+        switch (option) {
         case 'e':
             read_file(data);
             shift_cipher(data, 'e');
@@ -28,15 +28,12 @@ void main() {
             read_file(data);
             shift_cipher(data, 'd');
             break;
-        case '\n':
-            printf("Your option: ");
-            break;
         case ' ':
         case '\t':
         case 'x':
             break;
         default:
-            puts("Wrong input");
+            puts("Wrong input. Try again!");
             break;
         }
     }
@@ -52,7 +49,7 @@ void shift_cipher(char *data, char option) {
     // encryption
     for (int i = 0; i < strlen(data); i ++) {
         locationPtr = strchr(letters, data[i]); // return address of text in letters
-        if (locationPtr == NULL) {
+        if (locationPtr == NULL) { // if not found on list on letter ==> ignore that
             printf("%c", data[i]);
             fprintf(filePtr, "%c", data[i]);
             continue;
@@ -66,8 +63,7 @@ void shift_cipher(char *data, char option) {
         fprintf(filePtr, "%c", letters[location]);
     }
     fclose(filePtr);
-    printf("\n");
-    puts("End of cryptation");
+    printf("\nEnd of cryptation\n");
 }
 
 void write_file(char option) {
