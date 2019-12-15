@@ -108,10 +108,10 @@ void read_file(char *data) {
     } else {
         fgets(data, 100, filePtr);
     }
-    // while (data[++i])
-    // {
-    //     data[i] = tolower(data[i]); // lower all character
-    // }
+    while (data[++i])
+    {
+        data[i] = tolower(data[i]); // lower all character
+    }
     
     fclose(filePtr);
 }
