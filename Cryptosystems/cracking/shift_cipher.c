@@ -43,7 +43,7 @@ void main() {
 }
 
 void shift_cipher(char *data, char option) {
-    long int key, text_lenght, location;
+    long int key, location;
     char *locationPtr;
     printf("Enter your key: ");
     scanf("%d", &key);
@@ -52,6 +52,11 @@ void shift_cipher(char *data, char option) {
     // encryption
     for (int i = 0; i < strlen(data); i ++) {
         locationPtr = strchr(letters, data[i]); // return address of text in letters
+        if (locationPtr == NULL) {
+            printf("%c", data[i]);
+            fprintf(filePtr, "%c", data[i]);
+            continue;
+        }
         location = locationPtr - letters; // find postion in array letters
         // encrypt || decrypt
         location = (location + (option == 'e'? key: -key) ) % 27; 
@@ -89,7 +94,7 @@ void read_file(char *data) {
         puts("File name is not correct. Try again!");
         read_file(data);
     } else {
-        fgets(data, 100, filePtr);
+        fgets(data, MAX, filePtr);
     }
     while (data[++i])
     {
