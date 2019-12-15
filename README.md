@@ -1,2 +1,2 @@
 # c_programming
-Practicing C
+This project using for store C program for practice
