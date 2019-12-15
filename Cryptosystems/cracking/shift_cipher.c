@@ -43,47 +43,30 @@ void main() {
 }
 
 void shift_cipher(char *data, char option) {
-    int key, text_lenght, location;
+    long int key, text_lenght, location;
     char *locationPtr;
     printf("Enter your key: ");
     scanf("%d", &key);
-    // generate table of data
-    // convert to number
-    text_lenght = strlen(data);
-    int arr[text_lenght];
-    char encrypt_text[text_lenght];
-    for (int i = 0; i < text_lenght; i ++) {
+    printf("Your text: ");
+    write_file(option);
+    // encryption
+    for (int i = 0; i < strlen(data); i ++) {
         locationPtr = strchr(letters, data[i]); // return address of text in letters
         location = locationPtr - letters; // find postion in array letters
-        arr[i] = location;
-    }
-    if (option == 'e') {
-        // encrytion
-        for (int y = 0; y < text_lenght; y ++) {
-            arr[y] = (arr[y] + key)%27;
-        }
-    } else if (option == 'd') {
-        // decrytion
-        for (int y = 0; y < text_lenght; y ++) {
-            arr[y] = (arr[y] - key)%27;
-            arr[y] += arr[y] < 0 ? 27 : 0;
-        }
-    }
-    // convert to text and save to file
-    write_file(option);
-    printf("Your text: ");
-    for (int i = 0; i < text_lenght; i ++) {
-        encrypt_text[i] = letters[arr[i]];
-        printf("%c", encrypt_text[i]);
-        fprintf(filePtr, "%c", encrypt_text[i]);
+        // encrypt || decrypt
+        location = (location + (option == 'e'? key: -key) ) % 27; 
+        location += location < 0 ? 27 : 0;
+        // convert to text and save to file
+        printf("%c", letters[location]);
+        fprintf(filePtr, "%c", letters[location]);
     }
     fclose(filePtr);
     printf("\n");
-    puts("End of cyptation");
+    puts("End of cryptation");
 }
 
 void write_file(char option) {
-    char name[100], *token, out_fname[100];
+    char name[100], *token, out_fname[100] = ""; // adding "" to prevent stupid error of C ?
     strcat(out_fname, option == 'e' ? "output/en_" : "output/de_");
     // extracting file name
     token = strtok (fname, "/");
@@ -94,7 +77,7 @@ void write_file(char option) {
     }
     strcat(out_fname, name);
     filePtr = fopen(out_fname, "w");
-    if (filePtr == NULL) puts("Error when loading file");
+    if (filePtr == NULL) puts("Error when loading file. Failed to write file");
 }
 
 void read_file(char *data) {
