@@ -5,10 +5,10 @@ void main() {
     int dimension = 4;
     int arr[4][4] = 
     {  
-        {0,1,0,1},
-        {1,0,0,0},
         {0,0,1,0},
-        {1,0,0,0}
+        {0,0,0,1},
+        {1,0,0,0},
+        {0,1,0,0}
     };
     // printf("Input dimension for matrix: ");
     // scanf("%d", &dimension);
