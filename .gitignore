@@ -2,4 +2,4 @@ input
 output
 *.exe
 vscode
-draft.c
+draft.*
