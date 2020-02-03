@@ -2,10 +2,8 @@
 #include "complex.h" // including header of complex file
 using namespace std;
 
-Complex::Complex(double aReal, double aImag) {
-    real = aReal;
-    imag = aImag;
-}
+Complex::Complex(double aReal, double aImag)
+    : real(aReal), imag(aImag) {} // this is call invoking initialization list (gg for more) || apply for constructor only
 // print()
 void Complex::print() { cout << "(" << real << "," << imag << ")" << endl; }
 // addInto() adds the given complex number (by reference) into this instance, and return this instance by reference
