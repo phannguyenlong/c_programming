@@ -86,7 +86,7 @@ int main()
     cout<<"Hello "<< name << "age is: "<< age << endl;
     cout << name.find("heo", 0) << endl;
     cout << string::npos <<endl; // string::nops la ko tim thay trong string..find()
-    age > age1 ? cout << age + age1 << endl: cout << "hello" << endl;
+    age > age1 ? cout << age + age1 << endl: cout << "hello" << endl; // short if function
     
     // user input
     int usrAge; // interger input
@@ -94,7 +94,8 @@ int main()
     cin >> usrAge ;
     cout << "Age is: " << usrAge << endl;
     
-    while (getchar() != '\n'); // must have this or C++ will pass '\n' to next input, bullshit
+    // while (getchar() != '\n'); // must have this or C++ will pass '\n' to next input, bullshit
+    fflush(stdin);  // can use this instead of while above to delete '\n'
     
     string usrName; // input string
     cout << "Enter ur name: ";
