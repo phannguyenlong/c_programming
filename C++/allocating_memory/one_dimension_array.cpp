@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
     // create 20 memory slot type int (4 bypte/each)
-    int * array = new int[20];
+    int * array = new int[20]; // will return the address of the first number
     if ( !array ) {
         cout << "Error when allocating memory" << endl;
     } else {
