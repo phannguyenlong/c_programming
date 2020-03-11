@@ -1,8 +1,8 @@
 #this is implent adminstative with Role Hirrachy
 ua = {"Bob": ["PCMember"], "Alice": ["Lecturer"], "Oscar": ['TA'], "Charlie": ["Student", "TA"]}
-pa = {"Faculty": ['delete_course1', 'modify_course2'], "Lecturer": ['modify_course2'], "TA": ['modify_course3'], "PCMember": ["delete_course2"], "Student": ['register_to_course1']}
-us = {"Alice": ['s1','s2'], "Bob": ['s2'], 'Oscar': ['s2'], 'Charlie':['s1']}
-rs = {"Faculty": ['s1'], "Student": ['s2'], "PCMemeber": ['s1'], "Lecturer": ['s1'], "TA": ['s1'], "PTEmployee": ['s2']}
+pa = {"Faculty": ['delete_course1', 'modify_course2'], "Lecturer": ['modify_course2'], "TA": ['modify_course3'], "PCMember": ["delete_course2"], "Student": ['register_to_course1'], "PTEmployee": ['none']}
+us = {"Alice": ['s1','s2'], "Bob": ['s2'], 'Oscar': ['s1','s2'], 'Charlie':['s1']}
+rs = {"Faculty": ['s1'], "Student": ['s2'], "PCMember": ['s1'], "Lecturer": ['s1'], "TA": ['s2'], "PTEmployee": ['s2']}
 rh = {
     "PCMember": ["PCMember","Faculty", "Lecturer", "TA", "Student", "PTEmployee"],
     "Faculty": ["Faculty", "Student"],
