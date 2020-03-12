@@ -36,35 +36,23 @@ def getMemberFromRole(condition):
     return res_mem
 
 def can_assign(ca, c, role):
-    # print("Assgin CA: ", end ='')
-    # print(ca, end ='')
     admin = getMemberFromRole(ca)[0]
-    # print(admin,end='')
-    # print(" C: ", end ='')
-    # print(c, end ='')
     users = getMemberFromRole(c)
     for user in users:
-        # print(user, end='')
-        # print(" with role ", role)
         if (user != 'none' and admin != 'none'):
             ua[user].append(role)
-        # print(ua)
-    log = "Admin: {%s} is %s assign role '%s' to users {%s}\n"% (','.join(ca),admin, role, ",".join(users))
+    log = "Admin: {%s} is %s assign role '%s' to users {%s} is {%s}\n"% (','.join(ca),admin, role, ",".join(c),",".join(users))
     return log
 def can_revoke(ca, role, none):
-    # print("Revoke CA: ", end ='')
-    # print(ca, end ='')
     admin = getMemberFromRole(ca)[0]
-    # print(admin, end='')
     role = "+" + role
-    # print(" with role ", role, end='')
     users = getMemberFromRole([role])
     for user in users:
-        # print(" from", user)
         if (user != 'none' and admin != 'none'):
             ua[user].remove(role[1:])
     log = "Admin: {%s} is %s revoke role '%s' from users {%s}\n"% (','.join(ca),admin, role, ",".join(users))
     return log
+    
 def swap_role(user, permision):
     global ua # has to use or python will auto think ua become a local variable
     temp = copy.deepcopy(ua) # make a deep copy
