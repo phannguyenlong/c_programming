@@ -20,6 +20,7 @@ def Determine(user, permision):
     return "No"
 
 def getMemberFromRole(condition):
+    res_mem = []
     for mem in member:
         cond_count = 0 # to count how manny condition it pass
         for cond in condition:
@@ -30,33 +31,36 @@ def getMemberFromRole(condition):
                 elif (ua[mem][i] == cond[1:] and cond[0] == "-"): # if fail "-" condition ==> -count
                     cond_count -= 1
         if (cond_count == len(condition)): # if number of conditon pass = number of condition
-            return mem
-    return 'none'
+            res_mem.append(mem)
+    if not (res_mem): res_mem.append('none')
+    return res_mem
 
 def can_assign(ca, c, role):
     print("Assgin CA: ", end ='')
     print(ca, end ='')
-    admin = getMemberFromRole(ca)
+    admin = getMemberFromRole(ca)[0]
     print(admin,end='')
     print(" C: ", end ='')
     print(c, end ='')
-    user = getMemberFromRole(c)
-    print(user, end='')
-    print(" with role ", role)
-    if (user != 'none' and admin != 'none'):
-        ua[user].append(role)
-    print(ua)
+    users = getMemberFromRole(c)
+    for user in users:
+        print(user, end='')
+        print(" with role ", role)
+        if (user != 'none' and admin != 'none'):
+            ua[user].append(role)
+        print(ua)
 def can_revoke(ca, role, none):
     print("Revoke CA: ", end ='')
     print(ca, end ='')
-    admin = getMemberFromRole(ca)
+    admin = getMemberFromRole(ca)[0]
     print(admin, end='')
     role = "+" + role
     print(" with role ", role, end='')
-    user = getMemberFromRole([role])
-    print(" from", user)
-    if (user != 'none' and admin != 'none'):
-        ua[user].remove(role[1:])
+    users = getMemberFromRole([role])
+    for user in users:
+        print(" from", user)
+        if (user != 'none' and admin != 'none'):
+            ua[user].remove(role[1:])
 
 def swap_role(user, permision):
     global ua # has to use or python will auto think ua become a local variable
@@ -81,10 +85,7 @@ def swap_role(user, permision):
                 print(100*"=")
     return "No" 
 
-# user = input("Input user: ")
-# permision = input("Input permission: ")
-
-user = "Oscar"
-permision = "modify_course2"
+user = input("Input user: ")
+permision = input("Input permission: ")
 
 print("Answer is:",swap_role(user,permision))
