@@ -52,7 +52,7 @@ def can_revoke(ca, role, none):
             ua[user].remove(role[1:])
     log = "Admin: {%s} is %s revoke role '%s' from users {%s}\n"% (','.join(ca),admin, role, ",".join(users))
     return log
-    
+
 def swap_role(user, permision):
     global ua # has to use or python will auto think ua become a local variable
     temp = copy.deepcopy(ua) # make a deep copy
@@ -81,4 +81,7 @@ user = input("Input user: ")
 permision = input("Input permission: ")
 
 print("Can %s has permission %s?"%(user, permision))
-print("Answer is:",swap_role(user,permision))
+try:
+    print("Answer is:",swap_role(user,permision))
+except KeyError:
+    print("Wrong user or permission")
