@@ -19,7 +19,7 @@ def Determine(user, permision):
                             return "Yes"
     return "No"
 
-def getMemberFromRole(condition):
+def getMemberFromRole(condition): # it will return the user fit with condition
     res_mem = []
     for mem in member:
         cond_count = 0 # to count how manny condition it pass
@@ -53,6 +53,7 @@ def can_revoke(ca, role, none):
     log = "Admin: {%s} is %s revoke role '%s' from users {%s}\n"% (','.join(ca),admin, role, ",".join(users))
     return log
 
+# Function will run through all case 
 def swap_role(user, permision):
     global ua # has to use or python will auto think ua become a local variable
     temp = copy.deepcopy(ua) # make a deep copy
