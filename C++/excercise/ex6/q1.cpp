@@ -1,7 +1,6 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-
 using namespace std;
 
 class Student {
@@ -26,15 +25,9 @@ class Student {
             GPA = GPA > 4.0 ? 4.0 : GPA;
             return *this;
         }
-        bool operator>(float num) {
-            return GPA > num;
-        }
-        bool operator>(Student another) {
-            return GPA > another.GPA;
-        }
-        bool operator<(float num) {
-            return GPA < num;
-        }
+        bool operator>(float num) { return GPA > num; }
+        bool operator>(Student another) { return GPA > another.GPA; }
+        bool operator<(float num) { return GPA < num; }
         friend ostream& operator<<(ostream & os, Student std) { // using overloading for operation <<
             os << "Name: " << std.lname << " " << std.fname << endl;
             os << "GPA: " << setprecision(2) << std.GPA << ", Status: " << std.status << endl;
@@ -65,7 +58,7 @@ int main() {
             }
         }
     }
-    cout << "Sorted list: " << endl;
+    cout << "==================Sorted list==================" << endl;
     for (int i=0; i<5; i++) {
         cout << *student_list[i] << endl;
     }
