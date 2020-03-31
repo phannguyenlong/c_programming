@@ -44,14 +44,14 @@ class Student {
 };
 
 int main() {
-    vector <Student*> student_list;
+    vector <Student*> student_list; // create list of pointer to Student class
     string fname[5] = {"Nam", "Thanh", "Ngoc", "Cao", "Tien"};
     string lname[5] = {"Nguyen", "Nguyen", "Phan", "Tran", "Bui"};
     string gender[5] = {"male","male","female","male","male"};
     string status[5] = {"freshman", "sophomore", "junior", "senior"};
     float gpa[5] = {3,4,3.5,3.3,3.1};
     for (int i=0; i<5; i++) {
-        student_list.push_back(new Student(fname[i],lname[i],gender[i],status[i],gpa[i]));
+        student_list.push_back(new Student(fname[i],lname[i],gender[i],status[i],gpa[i])); // use new cause it return a pointer
         cout << *student_list[i] << endl; // must have * cause it is pointer
     }
     // sorted
