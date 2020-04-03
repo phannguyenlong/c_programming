@@ -20,7 +20,9 @@ class Matrix {
             }
             cout << "Matrix size " << size << "x" << size << " is created" << endl; 
         }
-        ~Matrix() {
+        ~Matrix() { 
+            // Create destructor to clean up array inside class cause defaul cosntructor just delete value of pointer only
+            // (Aplly rule of three)
             for (int i=0; i < size; i++) {
                 delete [] *(ptr + i);
             }
@@ -55,7 +57,8 @@ class Matrix {
             return size * max;
         }
         template <class X> friend ostream& operator<<(ostream& os, Matrix<X>& array) { 
-            // must pass by refferent to prevent C++ make a shallow copy (applying rule of three)
+            // must pass by refferent to prevent C++ make a shallow copy that the destructor of copy class will erase the array in main class
+            // Apply rule of three
             for (int i=0; i < array.size*array.size; i++) {
                 if (i % array.size == 0 && i != 0) { os << "\n"; }
                 os << *(*(array.ptr + i/array.size) + i%array.size) << "\t";
