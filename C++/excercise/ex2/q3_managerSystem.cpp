@@ -87,7 +87,7 @@ void readFile(vector <Student*>& list) {
         while (!fin.eof()) {
             fin >> id;
             fin >> fname;
-            getline(fin, lname, '|');
+            getline(fin, lname, '|'); // get line with delimeter "|"
             getline(fin, gender, '|');
             getline(fin, major, '|');
             fin >> GPA;
@@ -103,7 +103,7 @@ void writeFile(const vector <Student*> &list) {
     cin >> address;
     fout.open(address, ios::out); // set to ouput mode
     for (int i=0; i < list.size(); i++) {
-        fout <<  list[i]->id << " " << list[i]->lname << list[i]->fname << "|" ;
+        fout <<  list[i]->id << " " << list[i]->lname << list[i]->fname << "|" ; // write to file
         fout << list[i]->gender << "|" << list[i]->major << "|" << list[i]->GPA << "\n";
     }
 }
