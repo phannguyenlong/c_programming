@@ -90,7 +90,7 @@ int main() {
             cout << "Wrong input" << endl;
             break;
         }
-        if (choice==1||choice==2||choice==3) {arr.push_back(shape.back()->area());}
+        if (choice==1||choice==2||choice==3) {arr.push_back(shape.back()->area());} // array to store area
         cout << "area: "<< arr.back() << endl;
     }
     arr = sorted(arr);
