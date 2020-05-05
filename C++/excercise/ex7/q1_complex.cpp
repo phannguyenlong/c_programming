@@ -29,10 +29,10 @@ int main() {
     srand(1);
     for (int i=0; i<10; i++) {
         complex_list.push_back(new Complex(rand() % 20, rand() % 20));
-        cout << *complex_list[i] << endl;
+        cout << *complex_list[i] << "\t";
     }
     // sorted
-    cout << "============Sorted list==============" << endl;
+    cout << "\n============Sorted list==============" << endl;
     for (int i=0; i < 10; i++) {
         for (int j=0; j < 10; j++) {
             Complex* temp;
@@ -43,5 +43,5 @@ int main() {
             }
         }
     }
-    for (int i=0; i < 10; i++) { cout << *complex_list[i] << endl; }
+    for (int i=0; i < 10; i++) { cout << *complex_list[i] << "\t"; }
 }
