@@ -27,7 +27,6 @@ class Tlist {
         void insertLast(int val) {
             tail->next = new Tnode(NULL,val);
             tail = tail->next;
-            cout << "run";
         }
         void insertAfter(int val) {
             p->next = new Tnode(p->next, val);
