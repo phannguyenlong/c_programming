@@ -18,7 +18,13 @@ void outputData(int *arr, int size) {
 }
 
 void insertionSort(int *arr, int size) {
-    
+  for (int i=0; i < size; i++) {
+    for (int j=0; j < size; j++) {
+      if (arr[i] == arr[j]) {
+        swap(arr[i], arr[j]);
+      }
+    }
+  }
 }
 
 int main() {
@@ -33,5 +39,7 @@ int main() {
     cout << "Before: ";
     outputData(arr, size);
 
+    insertionSort(arr, size);
     cout << "After: ";
+    outputData(arr, size);
 }
