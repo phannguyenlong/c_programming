@@ -18,12 +18,14 @@ void outputData(int *arr, int size) {
 }
 
 void insertionSort(int *arr, int size) {
-  for (int i=0; i < size; i++) {
-    for (int j=0; j < size; j++) {
-      if (arr[i] == arr[j]) {
-        swap(arr[i], arr[j]);
-      }
-    }
+  for (int i= 1; i < size; i++ ) {
+    int insert_element = arr[i];
+    int j = i - 1; // index to search in sorted part;
+    while (j >= 0  && arr[j] > insert_element) {
+      arr[j+1] = arr[j]; // move the list
+      j--;
+    } 
+    arr[j + 1] = insert_element;
   }
 }
 
