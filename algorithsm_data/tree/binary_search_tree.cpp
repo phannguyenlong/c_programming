@@ -26,37 +26,33 @@ class binaryTree {
   public:
     binaryTree(): root(NULL) {};
 
-    bool insertNode(int key){
+    bool insertNode(int key){ // this will scan the node to find position to input key
       if (root) {
         Ref p = root, q; // q to hold the previous node
         while (p) {
           q = p;
-          if (p->key < key) {
-            p = p->right;
-          } else if (p->key > key) {
-            p = p->left;
-          } else {  // mean = ==> already exist ==> break
-            return false;
-          }
+          if (p->key < key) p = p->right; // if p->key < key ==> move to right subtree
+          else if (p->key > key) p = p->left;
+          else return false;  // mean = ==> already exist ==> break
         }
-        if (q->key < key) { q->right = new Node(key, NULL, NULL);  }
+        if (q->key < key) { q->right = new Node(key, NULL, NULL);  } // add to left
         else { q->left = new Node(key, NULL, NULL); }
       } else { root = new Node(key, NULL, NULL); }
       return true;
     }
     bool deleteNode(int key) { // this will find the key in tree | if it has 2 child ==> find Predecessor to replace the node delete
-      Ref p = root, *q; // q is pass by referrence of q->left or q->right
+      Ref p = root, *q; // q is pass by referrence to hold q->left or q->right
       while (p) {
-        if ((p)->key < key) { q = &(p->right); p = (p)->right; }
+        if ((p)->key < key) { q = &(p->right); p = (p)->right; } // if p->key < key ==> move to right subtree
         else if ((p)->key > key) { q = &(p->left); p = (p)->left; }
         else { // mean =
-          if ((p)->left == NULL) *q = ((p)->right);
+          if ((p)->left == NULL) *q = ((p)->right); // check whether it has 2 child or not
           else if ((p)->right == NULL) *q = ((p)->left);
-          else {
-            while (p->right) p = p->right;
+          else { // this case mean subtree on left and child are not NULL ==> It has 2 child
+            while (p->right) p = p->right; // find Predecessor (the most right of left subtree)
             int temp = p->key;
-            deleteNode(p->key);
-            (*q) -> key = temp;
+            deleteNode(p->key); // delete Predecessor node
+            (*q) -> key = temp; // swap key of delete node with Predecessor key
           }
           break;
         }
@@ -125,7 +121,6 @@ class binaryTree {
         if (r->key == searchKey) cout << "(*)";
 
       print2Dtree(r->left, space, 2, isSearch, searchKey); // process left child
-
     }
 };
 
