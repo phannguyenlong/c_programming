@@ -25,7 +25,7 @@ void swap(int &a, int &b) { // pass it by reference
 }
 
 int partition(int *arr, int left, int right) {
-    int i=left+1, j=right, temp;
+    int i=left+1, j=right;
     int pivot = arr[left];
     do {
         while (arr[i] < pivot) i++;
