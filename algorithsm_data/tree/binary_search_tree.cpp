@@ -49,6 +49,8 @@ class binaryTree {
           if ((p)->left == NULL) *q = ((p)->right); // check whether it has 2 child or not
           else if ((p)->right == NULL) *q = ((p)->left);
           else { // this case mean subtree on left and child are not NULL ==> It has 2 child
+            if (p == root) *q = root;
+            p = p->left;
             while (p->right) p = p->right; // find Predecessor (the most right of left subtree)
             int temp = p->key;
             deleteNode(p->key); // delete Predecessor node
