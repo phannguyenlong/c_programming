@@ -6,13 +6,13 @@ class Shape {
     protected:
         double area=0;
     public:
-        virtual void draw()=0; // pure virtual function
+        virtual void draw() {};
         virtual double calArea() {return 0;}
         friend ostream & operator<< (ostream& os, Shape* shape) {
             os << shape->area << '\t';
             return os;
         }
-        bool operator > (Shape * shape) { return this->area < shape->area; }
+        bool operator < (Shape shape) { return this->area < shape.area; }
 };
 class Circle: public Shape {
     private:
@@ -44,7 +44,7 @@ vector <Shape *> sorted(vector <Shape*> shapes) {
     Shape *temp;
     for (int i=0; i < shapes.size(); i++) {
         for (int j=0; j < shapes.size(); j++) {
-            if (shapes[i] > shapes[j]) {
+            if (*shapes[i] < *shapes[j]) {
                 temp = shapes[i];
                 shapes[i] = shapes[j];
                 shapes[j] = temp;
