@@ -28,6 +28,12 @@ void bubbleSort(int *arr, int size) {
         }
     }
 }
+void selectionSort(int *arr, int size) {
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++) 
+            if (arr[i] > arr[j])
+                swap(arr[i], arr[j]);
+}
 
 int main() {
     int size;
