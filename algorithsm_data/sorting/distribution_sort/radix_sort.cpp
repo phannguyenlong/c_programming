@@ -5,7 +5,7 @@ using namespace std;
 
 void inputArray(int *arr, int size) {
     for (int i = 0; i < size; i++)
-        arr[i] = rand() % 20;
+        arr[i] = rand() % 200;
 }
 void outputArray(int *arr, int size) {
     for (int i = 0; i < size; i++)
@@ -27,17 +27,31 @@ int countDigit(int n) {
     }
     return count;
 }
+int getDigit(int num, int k) {
+    for (int i = 0; i < k - 1; i++)
+        num /= 10;
+    return num % 10;
+}
 
-void sort(int *arr, int size, int k) {
-    for (int i = 0; i < size; i ++) // use bubble sort instead of counting for fast
-        for (int j = i+1; j < size; j++) 
-            if ( arr[i]%(10*(k+1)) > arr[j]%(10*(k+1)) )
-                swap(arr[i], arr[j]);
+void countingSort(int *arr, int size, int k) {
+    int f[10] = {0};
+    int *b = new int[size];
+    for (int i = 0; i < size; i++)
+        f[getDigit(arr[i], k + 1)]++;
+    for (int i = 1; i < 10; i++)
+        f[i] = f[i] + f[i - 1];
+    for (int i = size-1; i >= 0; i-- ) { // NOTE: distribute from right to left
+        b[f[getDigit(arr[i], k + 1)] - 1] = arr[i];
+        f[getDigit(arr[i], k + 1)]--;
+    }
+
+    for (int i = 0; i < size; i++)
+        arr[i] = b[i];
 }
 void radixSort(int *arr, int size) {
     int num_of_digit = countDigit(findMax(arr, size));
     for (int i = 0; i < num_of_digit; i++)
-        sort(arr, size, i);
+        countingSort(arr, size, i);
 }
 
 int main() {
