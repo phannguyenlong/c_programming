@@ -62,6 +62,15 @@ void bubbleSort(Ref &head) {
         }
     }
 }
+void takeTurnSort(Ref &head, Ref &tail) { // this will place 1st max at pos 1, 1 min at pos 2, 2nd max pos 3, ...
+  for (Ref tmp_head = head; tmp_head != NULL && tmp_head->next != NULL; tmp_head = tmp_head->next->next)
+    for (Ref p = tmp_head->next->next; p != NULL; p = p->next) {
+      if (p->val > tmp_head->val)
+        swap(tmp_head->val, p->val);
+      if (p->val < tmp_head->next->val) 
+        swap(tmp_head->next->val, p->val);
+    }
+}
 
 void quickSort(Ref head, Ref tail) {
     
