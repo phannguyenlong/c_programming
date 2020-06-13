@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <string.h>
+#include <string>
 using namespace std;
 
 class TNode;
