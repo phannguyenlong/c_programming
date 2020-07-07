@@ -3,3 +3,4 @@ output
 *.exe
 .vscode
 draft.*
+*.class
