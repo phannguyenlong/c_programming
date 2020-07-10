@@ -1,27 +1,30 @@
 package student; // declare the package name is student cause it is in path /student/student.java
 
-public class student {
+public class student extends Person{
     // poperties of student
-    String name, class_name; 
-    int age, id;
+    String class_name; 
+    int id;
     // private poperty
     private String password;
     
     // Constructor of Student
     public student() {
-        System.out.println("New studen was created");
+        super(); // call parent Constructor
+        System.out.println("New student was created");
     } // defaul constructor
     public student(String name, String class_name, int age, int id) {
-        this.name = name;
+        super(name, age); // call parent constructor
         this.class_name = class_name;
-        this.age = age;
         this.id = id;
         System.out.println("New student was created");
     }
 
+    // @Override
     public void display() {
-        System.out.println("Name: " + name);
-        System.out.println("Age: " + age);
+        System.out.println("==========Student============");
+        // System.out.println("Name: " + name);
+        // System.out.println("Age: " + age);
+        super.display(); // call dispaly class of parent is Person.display()
         System.out.println("ID: " + id);
         System.out.println("Class: " + class_name);
     }
