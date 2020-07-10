@@ -1,9 +1,13 @@
 package student; // declare the package name is student cause it is in path /student/student.java
 
-public class student extends Person{
+/**
+ * This is class student. Derived class of Person.
+ * Implements Comparable to sort the list by name
+ */
+public class student extends Person implements Comparable<student> {
     // poperties of student
-    String class_name; 
-    int id;
+    public String class_name; 
+    public int id;
     // private poperty
     private String password;
     
@@ -28,7 +32,7 @@ public class student extends Person{
         System.out.println("New student was created");
     }
 
-    // @Override
+    @Override
     public void display() {
         System.out.println("==========Student============");
         // System.out.println("Name: " + name);
@@ -36,6 +40,11 @@ public class student extends Person{
         super.display(); // call dispaly class of parent is Person.display()
         System.out.println("ID: " + id);
         System.out.println("Class: " + class_name);
+    }
+
+    public void sortDisplay() {
+        // example of add variable to a string
+        System.out.println(String.format("Student {name: %s; class: %s, age: %d, id: %d", name, class_name, age, id)); 
     }
 
     // getter and setter for password poperty
@@ -48,12 +57,22 @@ public class student extends Person{
     }
 
     public boolean isEqual(student another) { // this fucntion use to compare 2 class
-        return 
-            (this.name.equals(another.name)) && 
-            (this.class_name.equals(another.class_name)) &&
-            (this.id == another.id) && (this.age == another.age);
+        return (this.name.equals(another.name)) && (this.class_name.equals(another.class_name))
+                && (this.id == another.id) && (this.age == another.age);
     }
 
+    /**
+     * This function is implement by interface Comparable to sort by first name
+     */
+    @Override
+    public int compareTo(student o) {
+        // get first name
+        String name1 = name.substring(name.lastIndexOf(" "));
+        String name2 = o.name.substring(name.lastIndexOf(" "));
+        // This will compare by name
+        return name1.compareTo(name2);
+        // if name >  o.name then swap
+    }
     public static void main(String[] args) {
         student std1 = new student();
         student std2 = new student("Long", "12CL", 20, 14472);
