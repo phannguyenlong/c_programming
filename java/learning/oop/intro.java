@@ -1,6 +1,7 @@
 import student.student; // import packet from the link student/student.java
 import student.Person;
 import student.CsStudent;
+import java_interface.*; // import all packet in Java interface
 
 class Intro {
     public static void main(String[] args) {
@@ -14,6 +15,16 @@ class Intro {
         
         for (Person index : arr) { // another way to write for loop
             index.display();
+            System.out.println("");
+        }
+
+        System.out.println("==============Interface session============");
+        Animal[] animal_list = { new Dog(), new Cat(), new Bird() };
+
+        for (Animal index : animal_list) {
+            index.getName();
+            index.getSound();
+            index.move();
             System.out.println("");
         }
 
