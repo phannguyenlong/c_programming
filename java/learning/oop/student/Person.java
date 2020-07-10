@@ -4,7 +4,12 @@ public class Person {
     public String name;
     public int age;
 
-    // constructor
+    /**
+     * This is docuemntation for constructor of class Person.
+     * Person class the base class student and CsStudent.
+     * @param name: paremeter indicate passing name of person
+     * @param age: paremter indicate passing age of person
+     */
     public Person(String name, int age) {
         this.name = name;
         this.age = age;

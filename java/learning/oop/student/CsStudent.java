@@ -12,6 +12,15 @@ public class CsStudent extends student { // inherit from super class in student 
         System.out.println("New CS Stutdent created");
     }
 
+    /**
+     * This is the Contructor of class CsStudent.
+     * This class is derived class of class Person
+     * @param name
+     * @param class_name
+     * @param age
+     * @param id
+     * @param subject
+     */
     public CsStudent(String name, String class_name, int age, int id, String subject) {
         super(name, class_name, age, id);
 

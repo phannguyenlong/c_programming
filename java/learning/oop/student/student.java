@@ -12,6 +12,15 @@ public class student extends Person{
         super(); // call parent Constructor
         System.out.println("New student was created");
     } // defaul constructor
+
+    /**
+     * This is constructor of class Student.
+     * This is a derived class of Person class
+     * @param name: indicate name of Person
+     * @param class_name: indicate class of Person
+     * @param age: indicate age of Person
+     * @param id: indicate Student ID of Person
+     */
     public student(String name, String class_name, int age, int id) {
         super(name, age); // call parent constructor
         this.class_name = class_name;
