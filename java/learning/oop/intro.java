@@ -4,7 +4,14 @@ import student.CsStudent;
 import java_interface.*; // import all packet in Java interface
 
 class Intro {
+    public static void staticMethoid(String name) {
+        System.out.println(String.format("Your name is %s", name));
+        System.out.println("Static method run without creating any object");
+        System.out.println("Static only play with static");
+    }
+
     public static void main(String[] args) {
+        staticMethoid("Long"); // cause main is static ==> it can call staticMethod
         Person person = new Person("Long", 20); // create new Person
 
         Person student = new student("Long", "12CL", 20, 14472);// initalize object student as base class is Person
@@ -28,5 +35,6 @@ class Intro {
             System.out.println("");
         }
 
+        staticMethoid("Long"); // cause main is static ==> it can call staticMethod
     }
 }
