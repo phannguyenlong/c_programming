@@ -1,7 +1,7 @@
 import student.student; // import packet from the link student/student.java
 import student.Person;
 import student.CsStudent;
-import java_interface.*; // import all packet in Java interface
+import java_interface.*; // import all packet in java_interface folder
 
 class Intro {
     public static void staticMethoid(String name) {

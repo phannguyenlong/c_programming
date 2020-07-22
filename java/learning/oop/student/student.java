@@ -44,7 +44,7 @@ public class student extends Person implements Comparable<student> {
 
     public void sortDisplay() {
         // example of add variable to a string
-        System.out.println(String.format("Student {name: %s; class: %s, age: %d, id: %d", name, class_name, age, id)); 
+        System.out.println(String.format("Student {name: %s; class: %s, age: %d, id: %d}", name, class_name, age, id));
     }
 
     // getter and setter for password poperty
