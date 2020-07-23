@@ -2,6 +2,11 @@ package chap3;
 
 import java.util.Arrays;
 
+/**
+ * This is ex3.5 (interface)
+ * This class will implement interface java.lang.CharSequence to make a model a Cescar encoder
+ * Also override all funcion of CharSequence (compulsory)
+ */
 public class CeacarCipher implements CharSequence {
     private char[] string_arr;
     public CeacarCipher(String line, int shift) {
