@@ -25,4 +25,10 @@ public class Person {
         System.out.println("Name: " + name);
         System.out.println("Age: " + age);
     }
+
+    public void sortDisplay() {
+        // example of add variable to a string
+        System.out.println(String.format("Student {name: %s; age: %d}", name, age));
+    }
+    
 }

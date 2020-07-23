@@ -42,6 +42,7 @@ public class student extends Person implements Comparable<student> {
         System.out.println("Class: " + class_name);
     }
 
+    @Override
     public void sortDisplay() {
         // example of add variable to a string
         System.out.println(String.format("Student {name: %s; class: %s, age: %d, id: %d}", name, class_name, age, id));
@@ -67,8 +68,8 @@ public class student extends Person implements Comparable<student> {
     @Override
     public int compareTo(student o) {
         // get first name
-        String name1 = name.substring(name.lastIndexOf(" "));
-        String name2 = o.name.substring(name.lastIndexOf(" "));
+        String name1 = name.substring(name.lastIndexOf(" ") + 1);
+        String name2 = o.name.substring(o.name.lastIndexOf(" ") + 1);
         // This will compare by name
         return name1.compareTo(name2);
         // if name >  o.name then swap
