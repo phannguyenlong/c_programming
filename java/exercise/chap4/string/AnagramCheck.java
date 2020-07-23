@@ -42,7 +42,6 @@ public class AnagramCheck {
         }
         return arr;
     }
-
     char[] sortStringByComparator(String str) {
         // cannot use char cause char is not an object ==> must convert to Character object
         Character[] arr = new Character[str.length()];
@@ -50,11 +49,11 @@ public class AnagramCheck {
             arr[i] = str.charAt(i);
         }
         
-        
+        // Must custom Array.sort cause it dont care about case sensitive
         Arrays.sort(arr,new Comparator<Character> () {
             @Override
             public int compare(Character o1, Character o2) {
-                return Character.compare(o1, o2);
+                return Character.compare(o1, o2); // use Characater.compare cause it care about case sensitive
             }
         });
           // using StringBuilder to convert Character array to String 
