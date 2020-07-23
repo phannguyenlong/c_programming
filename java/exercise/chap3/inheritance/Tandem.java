@@ -2,6 +2,7 @@ package chap3.inheritance;
 
 /**
  * This is class inherit form class Bicycle
+ * This is belong to ex3.6
  */
 public class Tandem extends Bicycle {
     private String seats;
