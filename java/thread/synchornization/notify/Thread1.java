@@ -28,12 +28,13 @@ public class Thread1 implements Runnable {
                 try {
                     System.out.println("Thread 1 wait");
                     data.wait();
+                    System.out.println("Thread 1 awake and run [" + i + "]");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("Thread 1 awake and run");
             }
         }
+        System.out.println("Thread 1 finish...");
     }
     
 }

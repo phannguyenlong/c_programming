@@ -17,18 +17,17 @@ public class Thread2 implements Runnable {
                 try {
                     System.out.println("Thread 2 waiting");
                     data.wait();
+
+                    System.out.println("Thread 2 awake and run [" + i + "]");
+                    System.out.println("T2> " + data.getX() * data.getX()); // square X
+
+                    data.notifyAll(); // wake other thread synchornized on variable data awake
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                System.out.println("Thread 2 awake and run");
-                System.out.println("T2> " + data.getX() * data.getX()); // square X
-
-                data.notifyAll(); // wake other thread synchornized on variable data awake
             }
         }
+        System.out.println("Thread 2 finish...");
     }
-    
 
-    
 }
