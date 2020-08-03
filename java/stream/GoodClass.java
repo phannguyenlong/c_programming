@@ -45,4 +45,8 @@ public class GoodClass implements Serializable{
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public void display() {
+        System.out.println(String.format("Price: %s, Good: %s, Desc: %s", price, good, desc));
+    }
 }

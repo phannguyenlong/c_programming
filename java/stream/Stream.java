@@ -139,6 +139,7 @@ public class Stream {
             while (true) {
                 GoodClass object = (GoodClass) in.readObject(); // has to cast
                 System.out.println(object.toString());
+                object.display();
             }
         } catch (EOFException e) {
             // Has to catch this
