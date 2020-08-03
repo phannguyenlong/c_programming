@@ -1,9 +1,12 @@
 package chap3;
 
+import java.io.Serializable;
+
 /**
  * This class will take role as a card with 2 poperty is value and suite
  */
-public class Card {
+public class Card implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String value;
     private String suite;
 

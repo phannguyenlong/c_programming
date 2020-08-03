@@ -1,5 +1,6 @@
 package chap3;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,8 +8,9 @@ import java.util.Random;
 /**
  * This class will create a deck of card with 52 cards inside
  */
-public class CardDeck {
-    private List <Card> card_deck = new ArrayList<>();
+public class CardDeck implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private List <Card> card_deck = new ArrayList<>();
     private String[] suites = { "Spade", "Heart", "Diamond", "Club" };
     private String[] non_number_card = { "King", "Queen", "Jack", "ACE" };
     
