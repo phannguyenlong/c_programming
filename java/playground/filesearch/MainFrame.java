@@ -44,8 +44,10 @@ public class MainFrame extends JFrame implements ActionListener {
 
         pathSearch = new JTextField(40);
         pathSearch.setBackground(Color.LIGHT_GRAY);
+        pathSearch.addActionListener(this); // add listener when press Enter
         globSearch = new JTextField(40);
         globSearch.setBackground(Color.LIGHT_GRAY);
+        globSearch.addActionListener(this); // add listener when press Enter
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -98,13 +100,14 @@ public class MainFrame extends JFrame implements ActionListener {
         } else {
             model.setRowCount(0); // Clear table
             Path path = Paths.get(pathSearch.getText());
+            String glob = globSearch.getText().equals("") ? "*" : globSearch.getText();
 
             // Start a thread
             Thread searchThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        SearchFile search = new SearchFile("glob:" + globSearch.getText(), model);
+                        SearchFile search = new SearchFile("glob:" + glob, model);
                         Files.walkFileTree(path, search);
                     } catch (InvalidPathException ex) {
                         showErrorMsg("Invalid Path Syntax");
