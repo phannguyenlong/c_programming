@@ -77,16 +77,18 @@ public class MainFrame extends JFrame implements ActionListener {
         for (String index : titles)
             model.addColumn(index);
 
-        table.getColumnModel().getColumn(0).setPreferredWidth(300); // set 1s column size
+        table.getColumnModel().getColumn(0).setPreferredWidth(400); // set 1s column size
+        table.setEnabled(false); // disable edit for table
 
         JScrollPane sp = new JScrollPane(table);
-        sp.setPreferredSize(new Dimension(650, 350));
+        sp.setPreferredSize(new Dimension(700, 400));
         body.add(sp);
         body.setBackground(Color.white);
     }
 
     private void renderWindow() {
-        setSize(700, 500);
+        // setSize(700, 500);
+        pack();
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
