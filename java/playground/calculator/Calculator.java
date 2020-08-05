@@ -20,6 +20,10 @@ public class Calculator extends JFrame implements ItemListener {
 
     public Calculator() {
         super("Caculator");
+        init();
+    }
+
+    private void init() {
         container = getContentPane();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
 
@@ -30,7 +34,7 @@ public class Calculator extends JFrame implements ItemListener {
         container.add(operationPane);
         renderWindow();
 
-        init();
+        on.setSelected(true);
     }
 
     private void renderControlPane() {
@@ -39,6 +43,7 @@ public class Calculator extends JFrame implements ItemListener {
 
         // Add buttons
         GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL; // strength the button
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.ipadx = 20;
         gbc.ipady = 20;
@@ -52,7 +57,7 @@ public class Calculator extends JFrame implements ItemListener {
         // add listener
         on.addItemListener(this);
         off.addItemListener(this);
-        // Group radio butotn (once is press at the time)
+        // Group radio butotn (once is pressed at the time)
         ButtonGroup controlGroup = new ButtonGroup();
         controlGroup.add(on);
         controlGroup.add(off);
@@ -65,8 +70,12 @@ public class Calculator extends JFrame implements ItemListener {
         operationPane.add(controlPane, gbc);
 
         // Numerical button
-        String[][] btnValue = { { " ", "<--", "C", "+" }, { "7", "8", "9", "-" }, { "4", "5", "6", "*" },
-                { "1", "2", "3", "/" }, { "0", ".", "=", "" } };
+        String[][] btnValue = {
+            { " ", "<--", "C", "+" },
+            { "7", "8", "9", "-" }, 
+            { "4", "5", "6", "*" },
+            { "1", "2", "3", "/" }, 
+            { "0", ".", "=", "" } };
         int y = 0;
         for (String[] indexArr : btnValue) {
             int x = 0;
@@ -83,10 +92,7 @@ public class Calculator extends JFrame implements ItemListener {
 
                 gbc.gridx = x;
                 gbc.gridy = y;
-                if (x == 2 && y == 4) {
-                    gbc.gridwidth = 2; // take 2 place
-                    gbc.fill = GridBagConstraints.HORIZONTAL; // strength the button
-                }
+                if (x == 2 && y == 4) gbc.gridwidth = 2; // take 2 place
                 operationPane.add(tmp, gbc);
                 x++;
             }
@@ -132,10 +138,6 @@ public class Calculator extends JFrame implements ItemListener {
                 e.printStackTrace();
             }
         }).start();
-    }
-
-    private void init() {
-        on.setSelected(true);
     }
 
     private void changePowerStage(String state) {
