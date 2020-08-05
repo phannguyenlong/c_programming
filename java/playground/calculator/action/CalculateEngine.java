@@ -1,4 +1,4 @@
-import static java.util.Arrays.asList;
+package calculator.action;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,21 +6,53 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Test {
-    public static void main(String[] args) {
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+/**
+ * This class will perform a calculation with one line operation input
+ * @author Long Shirmp
+ * @version 1.0
+ */
+public class CalculateEngine {
+
+    public CalculateEngine() {}
+    /**
+     * This function will convert opertation into code and calculate usign Script Engine
+     * @deprecated should not use this (no security and slow)
+     * @param operate
+     * @return a result convert to string
+     * @throws ScriptException
+     */
+    public String calculateScriptEngine(String operate) throws ScriptException {
+        // Using this to convert string to code
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("js");
+        Object result = new Object();
+        result = engine.eval(operate);
+        return result.toString();
+    }
+
+    /**
+     * This is the algorithm parse the operation into array and calulate them
+     * @param op one line operation
+     * @return A result convert to string
+     */
+    public String calculate(String op) {
         double res = 0;
-        String[] opLookup = {"+", "-", "/", "*"};
-        // String op = "2+12/3*5+4/2+2";
-        String op = "9-6*4/3+5";
-
-        List<String> operands = asList(op.split("[\\+\\-\\*\\/]"));
+        String[] opLookup = { "+", "-", "/", "*" };
+        // Extract number
+        List<String> operands = Arrays.asList(op.split("[\\+\\-\\*\\/]"));
         ArrayList<String> operations = new ArrayList<>();
-
+        // Extact + - * / operation
         Pattern pattern = Pattern.compile("[^0-9]");
         Matcher matcher = pattern.matcher(op);
         while (matcher.find()) {
             operations.add(new String(op.substring(matcher.start(), matcher.end())));
         }
+        if ((operations.size() + 1) != operands.size())
+            throw new InvalidOperationException("Invid operation syntax");
 
         // calculate
         // Calculate * and / first
@@ -49,10 +81,11 @@ public class Test {
             }
             i++;
         }
+        // Add the last number
         if (prevIndex.equals("+"))
             res += Double.parseDouble(operands.get(operands.size() - 1));
         else
             res -= Double.parseDouble(operands.get(operands.size() - 1));
-        System.out.println(res);
+        return String.valueOf(res);
     }
 }

@@ -9,6 +9,7 @@ import calculator.action.ButtonAction;
 /**
  * This program is simple calculator
  * @author Long Shrimp
+ * @version 1.0
  */
 public class Calculator extends JFrame implements ItemListener {
     private static final long serialVersionUID = 1L;

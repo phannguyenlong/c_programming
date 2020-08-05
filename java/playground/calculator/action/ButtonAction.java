@@ -1,16 +1,11 @@
 package calculator.action;
 
 import java.awt.event.*;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
  * This class will handle the event of button from MainFrame
- * 
  * @author Long Shirmp
  */
 public class ButtonAction implements ActionListener {
@@ -18,15 +13,6 @@ public class ButtonAction implements ActionListener {
 
     public ButtonAction(JTextField monitor) {
         this.monitor = monitor;
-    }
-
-    private String calculate(String operate) throws ScriptException {
-        // Using this to convert string to code
-        ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
-        Object result = new Object();
-        result = engine.eval(operate);
-        return result.toString();
     }
 
     @Override
@@ -40,11 +26,14 @@ public class ButtonAction implements ActionListener {
             monitor.setText("");
         } else if (action == "=") {
             try {
-                monitor.setText(calculate(monitor.getText()));
-            } catch (ScriptException e1) {
-                showErrorMsg("Invalid operation");
+                CalculateEngine calculator = new CalculateEngine();
+                monitor.setText(calculator.calculate(monitor.getText()));
             } catch (NullPointerException e1) {
                 showErrorMsg("There is no operation");
+            } catch (InvalidOperationException e1) {
+                showErrorMsg("Invalid Operation");
+            } catch (Exception e1) {
+                e1.printStackTrace();
             }
         } else {
             monitor.setText(monitor.getText() + action);
