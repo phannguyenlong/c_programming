@@ -1,25 +1,39 @@
-import static java.util.Arrays.asList;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Test {
     public static void main(String[] args) {
         double res = 0;
+        Pattern pattern;
+        Matcher matcher;
         String[] opLookup = {"+", "-", "/", "*"};
         // String op = "2+12/3*5+4/2+2";
-        String op = "9-6*4/3+5";
+        String op = "92 - 6 * 4/3+5";
 
-        List<String> operands = asList(op.split("[\\+\\-\\*\\/]"));
+        pattern = Pattern.compile("-?\\d+");
+        matcher = pattern.matcher(op);
+        ArrayList<String> operands = new ArrayList<>();
+        while (matcher.find()) {
+            operands.add(op.substring(matcher.start(), matcher.end()));
+        }
+
+        // List<String> operands = asList(op.split("[\\+\\-\\*\\/]"));
         ArrayList<String> operations = new ArrayList<>();
 
-        Pattern pattern = Pattern.compile("[^0-9]");
-        Matcher matcher = pattern.matcher(op);
+        pattern = Pattern.compile("[+-/*]");
+        matcher = pattern.matcher(op);
+
         while (matcher.find()) {
             operations.add(new String(op.substring(matcher.start(), matcher.end())));
+        }
+
+        for (String index : operands) {
+            System.out.println(index);
+        }
+        for (String index : operations) {
+            System.out.println(index);
         }
 
         // calculate

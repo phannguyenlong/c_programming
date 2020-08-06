@@ -2,7 +2,6 @@ package calculator.action;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +12,7 @@ import javax.script.ScriptException;
 /**
  * This class will perform a calculation with one line operation input
  * @author Long Shirmp
- * @version 1.0
+ * @version 1.0.1
  */
 public class CalculateEngine {
 
@@ -41,16 +40,23 @@ public class CalculateEngine {
      */
     public String calculate(String op) {
         double res = 0;
+        Pattern pattern;
+        Matcher matcher;
         String[] opLookup = { "+", "-", "/", "*" };
-        // Extract number
-        List<String> operands = Arrays.asList(op.split("[\\+\\-\\*\\/]"));
+
+        ArrayList<String> operands = new ArrayList<>();
         ArrayList<String> operations = new ArrayList<>();
+        // Extract number 
+        pattern = Pattern.compile("-?\\d+");
+        matcher = pattern.matcher(op);
+        while (matcher.find())
+            operands.add(op.substring(matcher.start(), matcher.end()));
         // Extact + - * / operation
-        Pattern pattern = Pattern.compile("[^0-9]");
-        Matcher matcher = pattern.matcher(op);
-        while (matcher.find()) {
-            operations.add(new String(op.substring(matcher.start(), matcher.end())));
-        }
+        pattern = Pattern.compile("[+-/*]");
+        matcher = pattern.matcher(op);
+        while (matcher.find()) 
+            operations.add(op.substring(matcher.start(), matcher.end()));
+
         if ((operations.size() + 1) != operands.size())
             throw new InvalidOperationException("Invid operation syntax");
 
